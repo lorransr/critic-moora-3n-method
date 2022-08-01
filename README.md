@@ -25,3 +25,5 @@ venv/Scripts/activate.ps1
 ```
 pip install -r requirements.txt
 ```
+
+> Todo crédito de desenvolvimento do método a pesquisadora [Natália Oliveira Barbosa](https://www.linkedin.com/in/nat%C3%A1lia-barbosa/) de Paula em sua tese de mestrado  no IME 
