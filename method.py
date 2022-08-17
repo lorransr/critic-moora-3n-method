@@ -1,12 +1,13 @@
 import pandas as pd
 from scipy.spatial.distance import pdist,squareform
 import math
+from logger import logger
 
 def apply_method(decision_matrix:pd.DataFrame, criteria_type:dict):
-    print("executando método")
+    logger.debug("executando método")
     weights = apply_critic(decision_matrix,criteria_type)
     ranking = apply_moora(decision_matrix,criteria_type,weights)
-    print(ranking)
+    logger.debug(f"ranking: \n{ranking.to_dict()}")
     return ranking
 
 def min_max_normalize(criteria:pd.Series,criteria_type:str):
@@ -75,7 +76,6 @@ if __name__ == "__main__":
     #criteria
     criteria_type = ['MIN','MIN','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX']
     criteria_dict = dict(zip(criteria,criteria_type))
-    print("iniciou o método")
-    print(f"matrix de decisão: {decision_matrix}")
+    logger.debug("iniciando...")
     apply_method(decision_matrix,criteria_dict)
-    print("terminou de rodar o método")
+    logger.debug("fim")
