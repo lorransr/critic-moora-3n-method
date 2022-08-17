@@ -1,26 +1,44 @@
 import pandas as pd
 from scipy.spatial.distance import pdist,squareform
+import math
 
 def apply_method(decision_matrix:pd.DataFrame, criteria_type:dict):
-    apply_critic(decision_matrix,criteria_type)
     print("executando método")
+    weights = apply_critic(decision_matrix,criteria_type)
+    ranking = apply_moora(decision_matrix,criteria_type,weights)
+    print(ranking)
+    return ranking
 
 def min_max_normalize(criteria:pd.Series,criteria_type:str):
     if criteria_type == "MAX":
         return criteria.apply(lambda x: (x - criteria.min()) / (criteria.max() - criteria.min()))
     else:
         return criteria.apply(lambda x: (x - criteria.max()) / (criteria.min() - criteria.max()))
-        
-def get_distance_matrix(min_max_matrix:pd.DataFrame):
-    return squareform(pdist(min_max_matrix))
+
+def moora_normalize(criteria:pd.Series):
+    return criteria.apply(lambda x: x / math.sqrt((criteria**2).sum()))
+
+def moora_optimization(normalized_matrix:pd.DataFrame,criteria_type:dict):
+    criteria = pd.Series(criteria_dict)
+    max_values = normalized_matrix.loc[:,criteria[criteria == "MAX"].index].T.sum()
+    min_values = normalized_matrix.loc[:,criteria[criteria == "MIN"].index].T.sum()
+    data_performance = max_values - min_values
+    return data_performance .sort_values(ascending=False)    
 
 def apply_critic(decision_matrix:pd.DataFrame,criteria_type:dict):
     min_max_matrix = decision_matrix.apply(lambda criteria: min_max_normalize(criteria,criteria_type[criteria.name]))
-    distance_matrix = get_distance_matrix(min_max_matrix)
-    return
+    caracteristic_value = min_max_matrix.std()
+    measure_of_conflict = (1 - min_max_matrix.corr()).sum() * caracteristic_value
+    weights = measure_of_conflict / measure_of_conflict.sum()
+    return weights
 
 def apply_moora(decision_matrix:pd.DataFrame,criteria_type:dict,weights:dict):
-    return
+    normalized_matrix = decision_matrix.apply(lambda criteria: moora_normalize(criteria))
+    weighted_matrix = normalized_matrix * weights
+    data_performance = moora_optimization(weighted_matrix,criteria_type)
+    ranking = (data_performance
+            .rank(ascending=False))
+    return ranking
 
 if __name__ == "__main__":
 
