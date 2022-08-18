@@ -20,7 +20,7 @@ def moora_normalize(criteria:pd.Series):
     return criteria.apply(lambda x: x / math.sqrt((criteria**2).sum()))
 
 def moora_optimization(normalized_matrix:pd.DataFrame,criteria_type:dict):
-    criteria = pd.Series(criteria_dict)
+    criteria = pd.Series(criteria_type)
     max_values = normalized_matrix.loc[:,criteria[criteria == "MAX"].index].T.sum()
     min_values = normalized_matrix.loc[:,criteria[criteria == "MIN"].index].T.sum()
     data_performance = max_values - min_values
@@ -70,8 +70,6 @@ if __name__ == "__main__":
         vars,
         columns = criteria,
         index = alternatives)
-
-    #weights
 
     #criteria
     criteria_type = ['MIN','MIN','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX','MAX']
