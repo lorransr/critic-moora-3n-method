@@ -1,7 +1,7 @@
-# Critir-Moora-3n
+# Critic-Moora-3n
 
 ## pre-requisitos
-- python 3.8+s
+- python 3.8+
 - pip
 
 
