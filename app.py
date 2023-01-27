@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from st_aggrid import AgGrid
 from method import apply_method
+from constant import METHOD_TEXT
 
 if 'init' not in st.session_state: st.session_state['init']=False
 if 'store_d' not in st.session_state: st.session_state['store_d']={}
@@ -89,12 +90,9 @@ def criteria_type_form(decision_matrix):
     return submitted,criteria_type_list
 
 def app():
-    st.title("Critic-moora-3n")
-    st.header("Explicação do  método")
-    st.image("https://images.unsplash.com/photo-1620295153878-8e6026f3be98?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80")
-    st.write("""
-    escreve o seu textao aqui
-    """)
+    st.title("CRITIC-MOORA-3N")
+    st.image("https://i.imgur.com/iQivHLx.png")
+    st.markdown(f'<div style="text-align: justify;">{METHOD_TEXT}</div>', unsafe_allow_html=True)
     st.subheader("Insira a matriz de decisão")
     df = fetch_data()
     ranking = None
