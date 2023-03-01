@@ -24,14 +24,14 @@ def fetch_data():
         return get_df()
 
 def get_df():
-    df_method = st.selectbox("selecione uma opção",["formulario","csv"])
+    df_method = st.selectbox("selecione uma opção",["formulário","csv"])
     if df_method == "formulario":
         return get_df_from_form()
     elif df_method == "csv":
         return get_df_from_csv()
 
 def get_df_from_csv():
-    uploaded_file = st.file_uploader("Selecione o arquivo csv compativel")
+    uploaded_file = st.file_uploader("Selecione o arquivo csv compatível")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         df = df.set_index("alternatives")
@@ -44,7 +44,7 @@ def get_df_from_form():
         n_criterios = st.number_input("Número de critérios",min_value=2,step=1)
         nome_alternativas = st.text_input("Nome das alternativas separado por vírgulas")
         nome_criterios = st.text_input("Nome dos critérios separado por vírgulas")
-        submitted = st.form_submit_button("submit")
+        submitted = st.form_submit_button("Submeter")
         if submitted:
             nome_alternativas = nome_alternativas.split(",")
             nome_criterios = nome_criterios.split(",")
