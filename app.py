@@ -82,7 +82,7 @@ def criteria_type_form(decision_matrix):
     st.subheader("Insira os tipos dos critérios")
     submitted = None
     with st.form("Tipos de Critérios"):
-        criteria_types = st.text_input("insira o tipo dos critérios (MAX ou MIN) em ordem separados por vírgula").split(",")
+        criteria_types = st.text_input("insira o tipo dos critérios (MAX ou MIN), em ordem, separados por vírgula").split(",")
         criteria_type_list= [c.strip() for c in criteria_types]
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submeter")
