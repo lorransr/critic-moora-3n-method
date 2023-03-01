@@ -40,10 +40,10 @@ def get_df_from_csv():
 
 def get_df_from_form():
     with st.form("meu_form"):
-        n_alternativas = st.number_input("n de alternativas",min_value=2,step=1)
-        n_criterios = st.number_input("n de criterios",min_value=2,step=1)
-        nome_alternativas = st.text_input("nome alternativas separado por virgula")
-        nome_criterios = st.text_input("nome criterios separado por virgula")
+        n_alternativas = st.number_input("Número de alternativas",min_value=2,step=1)
+        n_criterios = st.number_input("Número de critérios",min_value=2,step=1)
+        nome_alternativas = st.text_input("Nome das alternativas separado por vírgulas")
+        nome_criterios = st.text_input("Nome critérios separado por vírgula")
         submitted = st.form_submit_button("submit")
         if submitted:
             nome_alternativas = nome_alternativas.split(",")
