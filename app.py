@@ -43,7 +43,7 @@ def get_df_from_form():
         n_alternativas = st.number_input("Número de alternativas",min_value=2,step=1)
         n_criterios = st.number_input("Número de critérios",min_value=2,step=1)
         nome_alternativas = st.text_input("Nome das alternativas separado por vírgulas")
-        nome_criterios = st.text_input("Nome critérios separado por vírgula")
+        nome_criterios = st.text_input("Nome dos critérios separado por vírgulas")
         submitted = st.form_submit_button("submit")
         if submitted:
             nome_alternativas = nome_alternativas.split(",")
