@@ -25,7 +25,7 @@ def fetch_data():
 
 def get_df():
     df_method = st.selectbox("selecione uma opção",["formulário","csv"])
-    if df_method == "formulario":
+    if df_method == "formulário":
         return get_df_from_form()
     elif df_method == "csv":
         return get_df_from_csv()
