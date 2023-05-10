@@ -96,15 +96,15 @@ def app():
     df = fetch_data()
     ranking = None
     if df is not None:
-        decision_matrix = record_df(df)
-        submitted,criteria_type_list = criteria_type_form(decision_matrix)
+        edited_df = st.experimental_data_editor(df)
+        submitted,criteria_type_list = criteria_type_form(edited_df)
         if submitted:
-            validated = validate_criteria_type(criteria_type_list,decision_matrix)
+            validated = validate_criteria_type(criteria_type_list,edited_df)
             if not validated:
                 raise ValueError("Input de critérios incorreto")
-            criteria_names = list(decision_matrix.columns)
+            criteria_names = list(edited_df.columns)
             criteria_dict = dict(zip(criteria_names,criteria_type_list))
-            ranking = apply_method(decision_matrix,criteria_dict)
+            ranking = apply_method(edited_df,criteria_dict)
 
     if ranking is not None:
         st.write(ranking)
