@@ -22,12 +22,12 @@ virtualenv venv
 venv/Scripts/activate.ps1
 ```
 - Instalar dependencias
-```
 pip install -r requirements.txt
+
 ```
 -  rodar o app
 ```
 streamlit run app.py
 ```
 
-> Todo crédito de desenvolvimento do método a pesquisadora [Natália Oliveira Barbosa](https://www.linkedin.com/in/nat%C3%A1lia-barbosa/) de Paula em sua tese de mestrado  no IME 
+> Todo crédito de desenvolvimento do método a pesquisadora [Natália Oliveira Barbosa de Paula](https://www.linkedin.com/in/nat%C3%A1lia-barbosa/) em sua tese de mestrado  no IME 
